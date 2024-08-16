@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+
+{% block title %}Classes{% endblock %}
+
+{% block content %}
+
+
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<style>
+    body{
+        background-color: aquamarine;
+    }
+    .input_id{
+        margin-top:10px;
+        margin-bottom:15px;
+        width: 12.28%; /* You can set this to a specific value, like 300px or 500px */
+        height: 40px; /* Increase the height of the input */
+        padding: 10px; /* Increase padding for a larger feel */
+        font-size: 16px; /* Adjust the font size */
+        border: 1px solid black; /* Optional: adjust the border */
+        border-radius: 5px; /* Optional: add rounded corners */
+        box-sizing: border-box;
+        margin-left:15px;
+    }
+    .input_border{
+        border-radius:10px;
+    }
+    .h1_search{
+        font-size:50px;
+        text-align: center;
+    }
+</style>
+
+<div class="container mx-auto p-6 bg-gray-50 rounded-lg shadow-lg mt-10">
+    <div class="mb-4">
+
+        <h1 class="h1_search"> Search  Selected Item </h1>
+
+    <div class="input_border">
+        <input class="input_id" type="text" id="myInput_id" onkeyup="myFunction_id()" placeholder="Id Card">
+        <input class="input_id" type="text" id="myInput_expiry" onkeyup="myFunction_expiry()" placeholder="Expiry">
+        <input class="input_id" type="text" id="myInput_membership" onkeyup="myFunction_membership()" placeholder="Membership">
+        <input class="input_id" type="text" id="myInput_firstname" onkeyup="myFunction_firstname()" placeholder="First Name">
+        <input class="input_id" type="text" id="myInput_lastname" onkeyup="myFunction_lastname()" placeholder="Last Name">
+        <input class="input_id" type="text" id="myInput_phone" onkeyup="myFunction_phone()" placeholder="Phone Number">
+        <input class="input_id" type="text" id="myInput_address" onkeyup="myFunction_address()" placeholder="Address">
+    </div>
+
+        <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+            <thead class="bg-indigo-600 text-white">
+                <tr>
+                    <th class="py-3 px-5 text-left font-semibold">ID Card</th>
+                    <th class="py-3 px-5 text-left font-semibold">Expiry</th>
+                    <th class="py-3 px-5 text-left font-semibold">Membership</th>
+                    <th class="py-3 px-5 text-left font-semibold">First Name</th>
+                    <th class="py-3 px-5 text-left font-semibold">Last Name</th>
+                    <th class="py-3 px-5 text-left font-semibold">Phone Number</th>
+                    <th class="py-3 px-5 text-left font-semibold">Address</th>
+                </tr>
+            </thead>
+
+            <tbody class="member-list">
+                {% for item in page_obj %}
+                <tr class="border-b hover:bg-gray-100 transition-colors duration-200">
+                    <td class="py-3 px-5">{{ item.id_card }}</td>
+                    <td class="py-3 px-5">{{ item.expiry }}</td>
+                    <td class="py-3 px-5">{{ item.membership }}</td>
+                    <td class="py-3 px-5">{{ item.first_name }}</td>
+                    <td class="py-3 px-5">{{ item.last_name }}</td>
+                    <td class="py-3 px-5">{{ item.phone_number }}</td>
+                    <td class="py-3 px-5">{{ item.address }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="py-4 px-5 text-center text-gray-500">No members found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+        
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+</div>
+
+<!--search_id-->
+<script>
+
+  function myFunction_id() {
+    var input, filter, tbody, rows, td, i, txtValue;
+    input = document.getElementById('myInput_id');
+    filter = input.value.toUpperCase();
+    tbody = document.querySelector(".member-list");  // Corrected selector
+    rows = tbody.getElementsByTagName('tr');  // Get all the rows inside the tbody
+    
+    for (i = 0; i < rows.length; i++) {
+        td = rows[i].getElementsByTagName("td")[0];  // Get the third column (Membership)
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                rows[i].style.display = "";
+            } else {
+                rows[i].style.display = "none";
+            }
+        }       
+    }
+}
+</script>
+
+<!--search_expiry-->
+<script>
+
+    function myFunction_expiry() {
+      var input, filter, tbody, rows, td, i, txtValue;
+      input = document.getElementById('myInput_expiry');
+      filter = input.value.toUpperCase();
+      tbody = document.querySelector(".member-list");  // Corrected selector
+      rows = tbody.getElementsByTagName('tr');  // Get all the rows inside the tbody
+      
+      for (i = 0; i < rows.length; i++) {
+          td = rows[i].getElementsByTagName("td")[1];  // Get the third column (Membership)
+          if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  rows[i].style.display = "";
+              } else {
+                  rows[i].style.display = "none";
+              }
+          }       
+      }
+  }
+  </script>
+
+<!--search_membership-->
+<script>
+
+    function myFunction_membership() {
+      var input, filter, tbody, rows, td, i, txtValue;
+      input = document.getElementById('myInput_membership');
+      filter = input.value.toUpperCase();
+      tbody = document.querySelector(".member-list");  // Corrected selector
+      rows = tbody.getElementsByTagName('tr');  // Get all the rows inside the tbody
+      
+      for (i = 0; i < rows.length; i++) {
+          td = rows[i].getElementsByTagName("td")[2];  // Get the third column (Membership)
+          if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  rows[i].style.display = "";
+              } else {
+                  rows[i].style.display = "none";
+              }
+          }       
+      }
+  }
+  </script>
+
+ <!--search_firstname-->
+<script>
+
+    function myFunction_firstname() {
+      var input, filter, tbody, rows, td, i, txtValue;
+      input = document.getElementById('myInput_firstname');
+      filter = input.value.toUpperCase();
+      tbody = document.querySelector(".member-list");  // Corrected selector
+      rows = tbody.getElementsByTagName('tr');  // Get all the rows inside the tbody
+      
+      for (i = 0; i < rows.length; i++) {
+          td = rows[i].getElementsByTagName("td")[3];  // Get the third column (Membership)
+          if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  rows[i].style.display = "";
+              } else {
+                  rows[i].style.display = "none";
+              }
+          }       
+      }
+  }
+  </script> 
+
+<!--search_lastname-->
+<script>
+
+    function myFunction_lastname() {
+      var input, filter, tbody, rows, td, i, txtValue;
+      input = document.getElementById('myInput_lastname');
+      filter = input.value.toUpperCase();
+      tbody = document.querySelector(".member-list");  // Corrected selector
+      rows = tbody.getElementsByTagName('tr');  // Get all the rows inside the tbody
+      
+      for (i = 0; i < rows.length; i++) {
+          td = rows[i].getElementsByTagName("td")[4];  // Get the third column (Membership)
+          if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  rows[i].style.display = "";
+              } else {
+                  rows[i].style.display = "none";
+              }
+          }       
+      }
+  }
+  </script>
+
+<!--search_phone-->
+<script>
+
+    function myFunction_phone() {
+      var input, filter, tbody, rows, td, i, txtValue;
+      input = document.getElementById('myInput_phone');
+      filter = input.value.toUpperCase();
+      tbody = document.querySelector(".member-list");  // Corrected selector
+      rows = tbody.getElementsByTagName('tr');  // Get all the rows inside the tbody
+      
+      for (i = 0; i < rows.length; i++) {
+          td = rows[i].getElementsByTagName("td")[5];  // Get the third column (Membership)
+          if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  rows[i].style.display = "";
+              } else {
+                  rows[i].style.display = "none";
+              }
+          }       
+      }
+  }
+  </script>
+
+<!--search_address-->
+<script>
+
+    function myFunction_address() {
+      var input, filter, tbody, rows, td, i, txtValue;
+      input = document.getElementById('myInput_address');
+      filter = input.value.toUpperCase();
+      tbody = document.querySelector(".member-list");  // Corrected selector
+      rows = tbody.getElementsByTagName('tr');  // Get all the rows inside the tbody
+      
+      for (i = 0; i < rows.length; i++) {
+          td = rows[i].getElementsByTagName("td")[6];  // Get the third column (Membership)
+          if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  rows[i].style.display = "";
+              } else {
+                  rows[i].style.display = "none";
+              }
+          }       
+      }
+  }
+  </script> 
+
+{% endblock %}
