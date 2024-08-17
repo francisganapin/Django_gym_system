@@ -11,3 +11,23 @@ class RegisterFormMember(forms.ModelForm):
     class Meta:
         model = gym_members
         fields = ['id_card', 'expiry', 'membership', 'first_name', 'last_name', 'phone_number', 'address']
+
+class UpdateFormMember(forms.ModelForm):
+        expiry = forms.DateField(
+        widget=forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
+        input_formats=['%Y-%m-%d'],
+        label="Expiry Date"
+    )
+        class Meta:
+            model = gym_members
+            fields = ['id_card', 'expiry']
+
+class DeleteFormMember(forms.ModelForm):
+        expiry = forms.DateField(
+        widget=forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
+        input_formats=['%Y-%m-%d'],
+        label="Expiry Date"
+    )
+        class Meta:
+            model = gym_members
+            fields = ['id_card']

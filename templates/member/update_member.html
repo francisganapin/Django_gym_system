@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Member</title>
+</head>
+<body>
+    <h2>Update Member</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="id_card">ID Card:</label>
+        <input type="text" name="id_card" required><br>
+        <label for="expiry">Expiry Date:</label>
+        <input type="date" name="expiry" required><br>
+        <button type="submit">Update Member</button>
+    </form>
+    
+</body>
+</html>

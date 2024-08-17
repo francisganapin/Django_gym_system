@@ -1,0 +1,11 @@
+if you want to link your html like this 
+
+<a href="{% url '' %}">Add Member</a>
+
+find your ulr vies 
+
+path('add_member',addMember_views,name='addMember_views')
+
+copy the  addMember_views
+
+<a href="{% url 'addMember_views' %}">Add Member</a>

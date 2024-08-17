@@ -83,15 +83,24 @@
 
     <div class="navbar">
         <a href="#home">Home</a>
-        <a href="#news">News</a>
         <div class="dropdown">
-          <button class="dropbtn">Dropdown
+          <button class="dropbtn">Trainor Navigation
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
             <a href="#">Link 1</a>
             <a href="#">Link 2</a>
             <a href="#">Link 3</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Member Navigation
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="{% url 'addMember_views' %}">Add Member</a>
+            <a href="{% url 'updateMember_views' %}">Update Member</a>
+            <a href="{% url 'deleteMember_views' %}">Delete Member</a>
           </div>
         </div>
       </div>
