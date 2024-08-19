@@ -16,7 +16,8 @@ To set up your environment, ensure you have the following installed:
   pip install django==4.2
   pip show mysql-connector-python==9.0.0
   
-- ✅ Features and Functionality - 📦 Item Inventory - pdate - Delete
+- ✅ Features and Functionality
+-  📦 Item Inventory - pdate - Delete
 - 🏋️‍♂️ Trainer Navigation - Trainer List - Update - Delete
 - 👥 Member Navigation - Member List - Update - Delete -  Add
 - 📊 Stat Navigation - Count Number of Memberships - Total Number of Members
