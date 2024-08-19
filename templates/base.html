@@ -83,27 +83,45 @@
 
     <div class="navbar">
         <a href="#home">Home</a>
+
+        <div class="dropdown">
+          <button class="dropbtn">Item Inventory
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="{% url 'showInventory_views' %}">inventory list</a>
+            <a href="{% url 'updateInventory_views' %}">Update</a>
+            <a href="{% url 'deleteInventory_views' %}">Delete</a>
+          </div>
+        </div>
+   
+
         <div class="dropdown">
           <button class="dropbtn">Trainor Navigation
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
+            <a href="{% url 'showTrainor_views' %}">Trainor List </a>
+            <a href="{% url 'addTrainor_views' %}">Register Trainor </a>
+            <a href="{% url 'deleteTrainor_views' %}">Delete Trainor </a>
           </div>
         </div>
+        
         <div class="dropdown">
           <button class="dropbtn">Member Navigation
             <i class="fa fa-caret-down"></i>
           </button>
+
           <div class="dropdown-content">
+            <a href="{% url 'showMember_views' %}">Member List</a>
             <a href="{% url 'addMember_views' %}">Add Member</a>
             <a href="{% url 'updateMember_views' %}">Update Member</a>
             <a href="{% url 'deleteMember_views' %}">Delete Member</a>
           </div>
         </div>
       </div>
+
+   
 
 <div class="content">
     {% block content %}

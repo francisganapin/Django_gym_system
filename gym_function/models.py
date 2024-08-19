@@ -14,3 +14,26 @@ class gym_members(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+
+
+class gym_item(models.Model):
+        item_name = models.CharField(max_length=255)
+        stock = models.IntegerField()
+        description = models.TextField()
+        supplier = models.CharField(max_length=255)
+        phone_number = models.CharField(max_length=13)
+
+        class Meta:
+            db_table ='gym_item'
+
+
+class gym_trainor(models.Model):
+    trainor_id = models.CharField(max_length=255)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    specialty = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'gym_trainor'

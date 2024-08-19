@@ -14,12 +14,12 @@
 
 <body class="body_color">
     <div class="max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
-        <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Update Member</h2>
+        <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Delete Trainor</h2>
         <form method="POST">
             {% csrf_token %}
             <div class="mb-4">
-                <label for="id_card" class="block mb-2 text-sm font-medium text-gray-700">ID Card</label>
-                <input type="text" name="id_card" id="id_card" class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="ID Card" required>
+                <label for="id" class="block mb-2 text-sm font-medium text-gray-700">ID Card</label>
+                <input type="text" name="id" id="id" class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Id Number" required>
             </div>
             <div class="text-center">
                 <button type="submit" class="w-full px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Update Member</button>
@@ -27,5 +27,6 @@
         </form>
     </div>
 </body>
+
 
 {% endblock %}

@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Classes{% endblock %}
+
+{% block content %}
+
+
+
+<style>
+    body {
+        background-color: #e0f7fa; /* Light cyan for a fresher look */
+        font-family: 'Arial', sans-serif;
+    }
+
+    .input_id {
+        margin-top: 10px;
+        margin-bottom: 15px;
+        width: 300px;
+        height: 40px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #333;
+        border-radius: 5px;
+        box-sizing: border-box;
+        margin-left: 15px;
+        outline: none;
+    }
+
+    .input_id:focus {
+        border-color: #4a90e2;
+        box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+    }
+
+    .h1_search {
+        font-size: 40px;
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .scrollable-table-container {
+        width: 100%;
+        max-height: 400px;
+        overflow-y: auto;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        margin-top: 20px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+        text-align: left;
+    }
+
+    th, td {
+        padding: 15px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    th {
+        background-color: #4a90e2;
+        color: white;
+    }
+
+    td {
+        background-color: white;
+        color: #333;
+    }
+
+    /* Hover effects */
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+</style>
+
+<div class="container mx-auto p-6">
+    <h1 class="h1_search">Membership Overview</h1>
+
+ 
+        
+    <h1 class="text-xl text-gray-700">Total Members: <span class="font-semibold">{{ number_members }}</span></h1>
+
+    
+    <div class="scrollable-table-container">
+        <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+            <thead class="bg-indigo-600 text-white">
+                <tr>
+                    <th class="py-3 px-5 text-left font-semibold">Membership Type</th>
+                    <th class="py-3 px-5 text-left font-semibold">Count</th>
+                </tr>
+            </thead>
+            <tbody class="member-list">
+                {% for item in membership_data %}
+                <tr class="border-b hover:bg-gray-100 transition-colors duration-200">
+                    <td class="py-2 px-4">{{ item.membership }}</td>
+                    <td class="py-2 px-4">{{ item.count }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="2" class="py-4 px-5 text-center text-gray-500">No members found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
