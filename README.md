@@ -2,15 +2,37 @@ Requirments
 
 Updated 4/19.2024 
 
-pip install django 4.2
-pip show mysql-connector-python 9.0.0
-python 3.11
+# 📋 Project Requirements
 
-Done  
-      Item Inventory > Update, Delete 
-      Trainor Navigation > Trainor List, Update, Delete
-      Member Navigation > Member List, Update, Delete Add
-      Stat Navigation > Count Number of Membership,Total Number of Member 
+**🔄 Last Updated:** 04/19/2024
+
+## ⚙️ Environment Setup
+
+To set up your environment, ensure you have the following installed:
+
+- **🐍 Python 3.11**
+- **🌐 Django 4.2**  
+  ```bash
+  pip install django==4.2
+  pip show mysql-connector-python==9.0.0
+✅ Features and Functionality
+📦 Item Inventory
+ Update
+ Delete
+ 
+🏋️‍♂️ Trainer Navigation
+ Trainer List
+ Update
+ Delete
+ 
+👥 Member Navigation
+ Member List
+ Update
+ Delete
+ Add
+📊 Stat Navigation
+ Count Number of Memberships
+ Total Number of Members
 
 
 
