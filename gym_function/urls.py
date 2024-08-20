@@ -13,7 +13,8 @@ from .views import (
     deleteTrainor_views,
     showMembershipMember_views,
     showClass_views,
-    inputInventory_views
+    inputInventory_views,
+    loginMember_views,
 
 )
 from django.conf.urls.static import static
@@ -23,6 +24,7 @@ urlpatterns = [
     path('',showHomepage_views,name='showHomepage_views'),
     
         #for member
+    path('login',loginMember_views,name='loginMember_views'),
     path('member',showMember_views,name='showMember_views'),
     path('add_member',addMember_views,name='addMember_views'),
     path('update_member',updateMember_views,name='updateMember_views'),

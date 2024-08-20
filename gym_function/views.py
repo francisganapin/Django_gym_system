@@ -41,9 +41,22 @@ def deleteMember_views(request):
             cursor.execute("DELETE FROM gym_members WHERE id_card = %s",
                            [id_card]
                            )
+
         return redirect(showMember_views)
     return render(request,'member/delete_member.html')
 
+
+def loginMember_views(request):
+    expiry_date = None  # Initialize expiry_date at the beginning
+
+    if request.method == 'POST':
+        id_card = request.POST.get('id_card')  # Wrap id_card in quotes as it's a string key
+        if id_card:
+            with connection.cursor() as cursor:
+                cursor.execute('SELECT expiry FROM gym_members WHERE id_card = %s', [id_card])
+                expiry_date = cursor.fetchone()
+        return render(request, 'member/login_member.html', {'expiry_date': expiry_date})
+    return render(request, 'member/login_member.html', {'expiry_date': expiry_date})
 
 
 def addMember_views(request):
@@ -122,12 +135,12 @@ def addTrainor_views(request):
 
 def deleteTrainor_views(request):
     if request.method == 'POST':
-        id  = request.POST.get('id')
+        trainor_id  = request.POST.get('trainor_id')
 
         with connection.cursor() as cursor:
             cursor.execute(
-                "DELETE FROM gym_trainor WHERE id=%s",
-                (id)  
+                "DELETE FROM gym_trainor WHERE trainor_id=%s",
+                (trainor_id,)  
             )
         return redirect('showTrainor_views')
     return render(request,'trainor/delete_trainor.html')
