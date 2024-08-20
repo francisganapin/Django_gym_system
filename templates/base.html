@@ -119,9 +119,33 @@
             <a href="{% url 'deleteMember_views' %}">Delete Member</a>
           </div>
         </div>
+
+
+        <div class="dropdown">
+          <button class="dropbtn">Stats Navigation
+            <i class="fa fa-caret-down"></i>
+          </button>
+
+          <div class="dropdown-content">
+            <a href="{% url 'showMembershipMember_views' %}">Stats</a>
+          </div>
+        </div>
+
+        
+     
+        <div class="dropdown">
+          <button class="dropbtn">Classes
+            <i class="fa fa-caret-down"></i>
+          </button>
+
+          <div class="dropdown-content">
+            <a href="{% url 'showClass_views' %}">Class List</a>
+          </div>
+        </div>
+
       </div>
 
-   
+     
 
 <div class="content">
     {% block content %}

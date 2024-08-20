@@ -12,6 +12,7 @@ from .views import (
     addTrainor_views,
     deleteTrainor_views,
     showMembershipMember_views,
+    showClass_views
 
 )
 from django.conf.urls.static import static
@@ -37,6 +38,11 @@ urlpatterns = [
 
 
 
+    path('classes',showClass_views,name='showClass_views'),
+
+    
+
+        # stats
     path('show/membership/',showMembershipMember_views,name='showMembershipMember_views')
 
 ]

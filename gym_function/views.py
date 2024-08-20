@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from gym_function.models import gym_members,gym_item,gym_trainor
+from gym_function.models import gym_members,gym_item,gym_trainor,gym_classes
 from .forms import RegisterFormMember,UpdateFormMember,RegisterFormTrainor
 import mysql.connector
 
@@ -148,3 +148,8 @@ def showMembershipMember_views(request):
     return render(request, 'stats/stats_number.html', {'membership_data': membership_data,'number_members':number_members})
 
 
+
+
+def showClass_views(request):
+    gym_class = gym_classes.objects.all()
+    return render(request,'classes/show_class.html',{'gym_class':gym_class})

@@ -37,3 +37,14 @@ class gym_trainor(models.Model):
 
     class Meta:
         db_table = 'gym_trainor'
+
+
+class gym_classes(models.Model):
+     class_name = models.CharField(max_length=255)
+     class_type = models.CharField(max_length=255)
+     class_day = models.CharField(max_length=255)
+     # dont forget to connect this gym trainor_name into gym_trainor model
+     trainor_name = models.CharField(max_length=255)
+    
+     class Meta:
+        db_table = 'gym_classes'
