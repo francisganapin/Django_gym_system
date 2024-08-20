@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from gym_function.models import gym_members,gym_item,gym_trainor,gym_classes
-from .forms import RegisterFormMember,UpdateFormMember,RegisterFormTrainor
+from .forms import InputFormInventory,RegisterFormMember,RegisterFormTrainor
 import mysql.connector
 
 from django.shortcuts import render, redirect
@@ -18,6 +18,7 @@ def showMember_views(request):
 
 
 def updateMember_views(request):
+    '''This will update our member'''
     if request.method == 'POST':
         id_card = request.POST.get('id_card')
         expiry = request.POST.get('expiry')
@@ -84,10 +85,21 @@ def deleteInventory_views(request):
         with connection.cursor() as cursor:
             cursor.execute(
                 "DELETE FROM gym_item WHERE id=%s",
-                (id)  # Use a tuple here
+                (id,)  # Use a tuple here # add this , <- i dunno whty it works 
             )
         return redirect('showInventory_views')
     return render(request,'inventory/delete_inventory.html')
+
+def inputInventory_views(request):
+    if request.method == 'POST':
+        form = InputFormInventory(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/inventory')
+    else:
+        form = InputFormInventory(request.POST)
+    return render(request,'inventory/add_inventory.html',{'form':form})
+
 
 
 def showTrainor_views(request):

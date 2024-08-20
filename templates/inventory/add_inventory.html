@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Classes{% endblock %}
+
+{% block content %}
+<style> 
+
+.body_color{
+    background-color: aquamarine;
+}
+
+</style>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+<body class="body_color">
+    <div class="max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+        <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Input Inventory</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="id" class="block mb-2 text-sm font-medium text-gray-700">Item Name</label>
+                <input type="text" name="item_name" id="item_name" class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Item Name" required>
+            </div>
+            <div class="mb-4">
+                <label for="stock" class="block mb-2 text-sm font-medium text-gray-700">Stock</label>
+                <input type="number" name="stock" id="stock" class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Stock" required>
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block mb-2 text-sm font-medium text-gray-700">description</label>
+                <input type="text" name="description" id="description" class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Description" required>
+            </div>
+            <div class="mb-4">
+                <label for="stock" class="block mb-2 text-sm font-medium text-gray-700">Supplier</label>
+                <input type="text" name="supplier" id="supplier" class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Supplier" required>
+            </div>
+            <div class="mb-4">
+                <label for="stock" class="block mb-2 text-sm font-medium text-gray-700">phone_number</label>
+                <input type="text" name="phone_number" id="phone_number" class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="phone_number" required>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="w-full px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Input Item</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+
+{% endblock %}

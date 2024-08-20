@@ -47,6 +47,7 @@ class UpdateFormMember(forms.ModelForm):
             model = gym_members
             fields = ['id_card', 'expiry']
 
+
 class DeleteFormMember(forms.ModelForm):
         expiry = forms.DateField(
         widget=forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
@@ -55,9 +56,19 @@ class DeleteFormMember(forms.ModelForm):
     )
         class Meta:
             model = gym_members
-            fields = ['id_card']\
+            fields = ['id_card']
             
+class InputFormInventory(forms.ModelForm):
+        class Meta:
+              model = gym_item
+              fields = ['item_name','stock','description','supplier','phone_number']
+
+
 class UpdateFormInvetory(forms.ModelForm):
         class Meta:
               model = gym_item
               fields = ['id','stock']
+
+
+
+    
