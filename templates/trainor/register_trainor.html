@@ -81,6 +81,7 @@
 
     </style>
 
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
 <div class="body_div">
     <div class="container">
@@ -92,10 +93,12 @@
             <div class="form-group">
                 <label for="{{ form.trainor_id.id_for_label }}">ID Card:</label>
                 <input class="input" type="text" name="trainor_id" id="trainor_id" value="{{ form.trainor_id.value|default_if_none:'' }}">
-
             </div>
             
-    
+            {% if form.trainor_id.errors%}
+            <p> {{ form.trainor_id.errors}}</p>
+            {% endif %}
+
             <div class="form-group">
                 <label for="{{ form.first_name.id_for_label }}">First Name:</label>
                 <input class="input" type="text" name="first_name" id="first_name" value="{{ form.first_name.value|default_if_none:'' }}">

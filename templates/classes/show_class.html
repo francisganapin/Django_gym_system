@@ -5,7 +5,7 @@
 {% block content %}
 <style>
     body {
-        background-color: #4070f4;
+        background-color: aquamarine;
         font-family: Arial, sans-serif;
     }
 
@@ -82,6 +82,7 @@
                 <th class="py-2 px-4 text-left text-gray-600">Class Name</th>
                 <th class="py-2 px-4 text-left text-gray-600">Class Type</th>
                 <th class="py-2 px-4 text-left text-gray-600">Class Day</th>
+                <th class="py-2 px-4 text-left text-gray-600">Class Hour</th>
                 <th class="py-2 px-4 text-left text-gray-600">Trainer Name</th>
             </tr>
         </thead>
@@ -91,6 +92,7 @@
                 <td class="py-2 px-4">{{ item.class_name }}</td>
                 <td class="py-2 px-4">{{ item.class_type }}</td>
                 <td class="py-2 px-4">{{ item.class_day }}</td>
+                <td class="py-2 px-4">{{ item.class_hour }}</td>
                 <td class="py-2 px-4">{{ item.trainor_name }}</td>
             </tr>
             {% empty %}
