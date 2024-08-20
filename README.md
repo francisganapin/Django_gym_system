@@ -4,7 +4,7 @@
 
 # 📋 Project Requirements
 
-**🔄 Last Updated:** 04/19/2024
+**🔄 Last Updated:** 04/20/2024
 
 ## ⚙️ Environment Setup
 
@@ -21,6 +21,7 @@ To set up your environment, ensure you have the following installed:
 - 🏋️‍♂️ Trainer Navigation - Trainer List - Update - Delete
 - 👥 Member Navigation - Member List - Update - Delete -  Add
 - 📊 Stat Navigation - Count Number of Memberships - Total Number of Members
+- 🏫 Classes - list of classes 
 
 
 
