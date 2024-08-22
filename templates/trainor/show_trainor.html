@@ -7,98 +7,170 @@
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
 <style>
-    body{
-        background-color: aquamarine;
-    }
-    .input_id{
-        margin-top:10px;
-        margin-bottom:15px;
-        width: 12.28%; /* You can set this to a specific value, like 300px or 500px */
-        height: 40px; /* Increase the height of the input */
-        padding: 10px; /* Increase padding for a larger feel */
-        font-size: 16px; /* Adjust the font size */
-        border: 1px solid black; /* Optional: adjust the border */
-        border-radius: 5px; /* Optional: add rounded corners */
-        box-sizing: border-box;
-        margin-left:15px;
-    }
-    .input_border{
-        border-radius:10px;
-    }
-    .h1_search{
-        font-size:50px;
-        text-align: center;
-    }
+.body_style {
+    background-color: #e0f7e4;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
 
-    .scrollable-table-container {
-            width: 100%;
-            max-height: 600px; /* Adjust height to show 5 items */
-            overflow-y: auto;
-            border: 2px solid #333;
-        }
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+.input_id {
+    margin: 20px 0;
+    width: 100%;
+    max-width: 400px;
+    height: 45px;
+    padding: 10px 15px;
+    font-size: 18px;
+    border: 2px solid #2c7a7b;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin-left: 0;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
 
-        th, td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
+.input_id:focus {
+    border-color: #285e61;
+}
 
-        /* Optional: Custom scrollbar styling */
-        .scrollable-table-container::-webkit-scrollbar {
-            width: 8px;
-        }
+.h1_search {
+    font-size: 40px;
+    text-align: center;
+    color: #2c7a7b;
+    margin-bottom: 20px;
+}
 
-        .scrollable-table-container::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
+.scrollable-table-container {
+    width: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    border: 2px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-        .scrollable-table-container::-webkit-scrollbar-thumb {
-            background: #888;
-        }
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
 
-        .scrollable-table-container::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+    font-size: 16px;
+}
+
+th {
+    background-color: #2c7a7b;
+    color: white;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #e2e8f0;
+}
+
+.scrollable-table-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.scrollable-table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.scrollable-table-container::-webkit-scrollbar-thumb {
+    background: #2c7a7b;
+    border-radius: 5px;
+}
+
+.scrollable-table-container::-webkit-scrollbar-thumb:hover {
+    background: #285e61;
+}
+
     
 </style>
+<div class="body_style">
+        <div class="container_center">
+            <div class="container mx-auto p-6 mt-10" style="max-width: 360%; padding: 20px;">
 
-<div class="container mx-auto p-6 bg-gray-50 rounded-lg shadow-lg mt-10">
-<div class="scrollable-table-container mt-5">
-    <table class="">
-        <thead>
-            <tr class="text-gray-600">
+                <h1 class="h1_search">Trainor Search</h1>
+                <input class="input_id" type="text" id="myInput_trainorId" onkeyup="myFunction_trainorId()" placeholder="Search by Trainor Id">
 
-                <th class="py-3 px-4">Id Card</th>
-                <th class="py-3 px-4">First Name</th>
-                <th class="py-3 px-4">Last Name</th>
-                <th class="py-3 px-4">Speciality</th>
-                <th class="py-3 px-4">Phone Number</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in trainor %}
-            <tr class="border-b hover:bg-gray-100 transition-colors duration-200">
-   
-                <td class="py-2 px-4">{{ item.trainor_id }}</td>
-                <td class="py-2 px-4">{{ item.first_name }}</td>
-                <td class="py-2 px-4">{{ item.last_name }}</td>
-                <td class="py-2 px-4">{{ item.specialty }}</td>
-                <td class="py-2 px-4">{{ item.phone_number }}</td>
-        
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="6" class="py-4 px-4 text-center text-gray-500">No items found.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                <div class="scrollable-table-container mt-5">
+                    <table>
+                        <thead>
+                            <tr class="text-gray-600">
+                                <th class="py-3 px-4">Id Card</th>
+                                <th class="py-3 px-4">First Name</th>
+                                <th class="py-3 px-4">Last Name</th>
+                                <th class="py-3 px-4">Speciality</th>
+                                <th class="py-3 px-4">Phone Number</th>
+                            </tr>
+                        </thead>
+                        <tbody class="trainor_list">
+                            {% for item in trainor %}
+                            <tr class="border-b hover:bg-gray-100 transition-colors duration-200">
+                                <td class="py-2 px-4">{{ item.trainor_id }}</td>
+                                <td class="py-2 px-4">{{ item.first_name }}</td>
+                                <td class="py-2 px-4">{{ item.last_name }}</td>
+                                <td class="py-2 px-4">{{ item.specialty }}</td>
+                                <td class="py-2 px-4">{{ item.phone_number }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="6" class="py-4 px-4 text-center text-gray-500">No items found.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
+<script>
+    function myFunction_trainorId(){
+        var input, filter, tbody, rows,td ,i, txtValue;
+        input = document.getElementById('myInput_trainorId')
+        filter = input.value.toUpperCase();
+        tbody = document.querySelector('.trainor_list');
+        rows = tbody.getElementsByTagName('tr');
+
+        for (i=0; i < rows.length; i++){
+            td = rows[i].getElementsByTagName('td')[0];
+            if (td){
+                txtValue = td.textContent || td.innerText;
+                if(txtValue.toUpperCase().indexOf(filter) > -1){
+                    rows[i].style.display = "";
+                } else{
+                    rows[i].style.display ='none';
+                }
+            }
+        }
+    }
+</script>
+
+
+
 
 {% endblock %}

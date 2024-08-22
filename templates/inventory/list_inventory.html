@@ -7,97 +7,156 @@
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
 <style>
-    body{
+    body {
         background-color: aquamarine;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
     }
-    .input_id{
-        margin-top:10px;
-        margin-bottom:15px;
-        width: 12.28%; /* You can set this to a specific value, like 300px or 500px */
-        height: 40px; /* Increase the height of the input */
-        padding: 10px; /* Increase padding for a larger feel */
-        font-size: 16px; /* Adjust the font size */
-        border: 1px solid black; /* Optional: adjust the border */
-        border-radius: 5px; /* Optional: add rounded corners */
+
+    .container {
+        max-width: 85%;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        margin: 50px auto;
+    }
+
+    .input_id {
+        margin: 20px 0;
+        width: 100%;
+        max-width: 400px;
+        height: 45px;
+        padding: 10px 15px;
+        font-size: 18px;
+        border: 2px solid #333;
+        border-radius: 8px;
         box-sizing: border-box;
-        margin-left:15px;
+        outline: none;
+        transition: border-color 0.3s ease;
     }
-    .input_border{
-        border-radius:10px;
+
+    .input_id:focus {
+        border-color: #555;
     }
-    .h1_search{
-        font-size:50px;
+
+    .h1_search {
+        font-size: 40px;
         text-align: center;
+        color: #333;
+        margin-bottom: 20px;
     }
 
     .scrollable-table-container {
-            width: 100%;
-            max-height: 600px; /* Adjust height to show 5 items */
-            overflow-y: auto;
-            border: 2px solid #333;
-        }
+        width: 100%;
+        max-height: 600px;
+        overflow-y: auto;
+        border: 2px solid #333;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
-        th, td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
+    th, td {
+        padding: 15px;
+        border: 1px solid #ddd;
+        text-align: left;
+        font-size: 16px;
+    }
 
-        /* Optional: Custom scrollbar styling */
-        .scrollable-table-container::-webkit-scrollbar {
-            width: 8px;
-        }
+    th {
+        background-color: #333;
+        color: white;
+        font-weight: bold;
+    }
 
-        .scrollable-table-container::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
 
-        .scrollable-table-container::-webkit-scrollbar-thumb {
-            background: #888;
-        }
+    tr:hover {
+        background-color: #e2e8f0;
+    }
 
-        .scrollable-table-container::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-    
+    .scrollable-table-container::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .scrollable-table-container::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .scrollable-table-container::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 5px;
+    }
+
+    .scrollable-table-container::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
 </style>
 
-<div class="container mx-auto p-6 bg-gray-50 rounded-lg shadow-lg mt-10">
-<div class="scrollable-table-container mt-5">
-    <table class="">
-        <thead>
-            <tr class="text-gray-600">
-                <th class="py-3 px-4">Id</th>
-                <th class="py-3 px-4">Name</th>
-                <th class="py-3 px-4">Stock</th>
-                <th class="py-3 px-4">Description</th>
-                <th class="py-3 px-4">Supplier</th>
-                <th class="py-3 px-4">Phone Number</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in inventory %}
-            <tr class="border-b hover:bg-gray-100 transition-colors duration-200">
-                <td class="py-2 px-4">{{ item.id }}</td>
-                <td class="py-2 px-4">{{ item.item_name }}</td>
-                <td class="py-2 px-4">{{ item.stock }}</td>
-                <td class="py-2 px-4">{{ item.description }}</td>
-                <td class="py-2 px-4">{{ item.supplier }}</td>
-                <td class="py-2 px-4">{{ item.phone_number }}</td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="6" class="py-4 px-4 text-center text-gray-500">No items found.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="container">
+    <h1 class="h1_search">Inventory Search</h1>
+    <input class="input_id" type="text" id="myInput_trainorId" onkeyup="myFunction_trainorId()" placeholder="Search Item by Name">
+    
+    <div class="scrollable-table-container mt-5">
+        <table>
+            <thead>
+                <tr class="text-gray-600">
+                    <th class="py-3 px-4">Id</th>
+                    <th class="py-3 px-4">Name</th>
+                    <th class="py-3 px-4">Stock</th>
+                    <th class="py-3 px-4">Description</th>
+                    <th class="py-3 px-4">Supplier</th>
+                    <th class="py-3 px-4">Phone Number</th>
+                </tr>
+            </thead>
+            <tbody class="item_list">
+                {% for item in inventory %}
+                <tr class="border-b hover:bg-gray-100 transition-colors duration-200">
+                    <td class="py-2 px-4">{{ item.id }}</td>
+                    <td class="py-2 px-4">{{ item.item_name }}</td>
+                    <td class="py-2 px-4">{{ item.stock }}</td>
+                    <td class="py-2 px-4">{{ item.description }}</td>
+                    <td class="py-2 px-4">{{ item.supplier }}</td>
+                    <td class="py-2 px-4">{{ item.phone_number }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="py-4 px-4 text-center text-gray-500">No items found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
-</div>
+
+<script>
+    function myFunction_trainorId(){
+        var input, filter, tbody,rows,td,i,txtValue;
+        input = document.getElementById('myInput_trainorId')
+        filter = input.value.toUpperCase();
+        tbody = document.querySelector('.item_list');
+        rows = tbody.getElementsByTagName('tr');
+
+        for (i=0; i < rows.length; i++){
+            td = rows[i].getElementsByTagName('td')[1];
+            if (td){
+                txtValue = td.textContent || td.innerText;
+                if(txtValue.toUpperCase().indexOf(filter) > -1){
+                    rows[i].style.display = "";
+                } else{
+                    rows[i].style.display ='none';
+                }
+            }
+        }
+    }
+</script>
 
 {% endblock %}

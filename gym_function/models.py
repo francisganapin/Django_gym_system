@@ -50,3 +50,13 @@ class gym_classes(models.Model):
     
      class Meta:
         db_table = 'gym_classes'
+
+
+class member_login(models.Model):
+    id_card = models.CharField(max_length=255)
+    first_name = models.CharField(max_length=255)
+    last_name =models.CharField(max_length=255)
+    login =models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'login_record'

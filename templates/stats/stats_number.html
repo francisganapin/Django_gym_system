@@ -82,16 +82,14 @@
         padding: 20px;
     }
 </style>
+
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
 <div class="container mx-auto p-6">
     <h1 class="h1_search">Membership Overview</h1>
 
- 
-        
     <h1 class="text-xl text-gray-700">Total Members: <span class="font-semibold">{{ number_members }}</span></h1>
 
-    
     <div class="scrollable-table-container">
         <table class="min-w-full bg-white border border-gray-300 rounded-lg">
             <thead class="bg-indigo-600 text-white">
@@ -114,6 +112,34 @@
             </tbody>
         </table>
     </div>
+
+    <div class="scrollable-table-container mt-8">
+        <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+            <thead class="bg-indigo-600 text-white">
+                <tr>
+                    <th class="py-3 px-5 text-left font-semibold">ID Card</th>
+                    <th class="py-3 px-5 text-left font-semibold">First Name</th>
+                    <th class="py-3 px-5 text-left font-semibold">Last Name</th>
+                    <th class="py-3 px-5 text-left font-semibold">Login Time</th>
+                </tr>
+            </thead>
+            <tbody class="member-list">
+                {% for item in gym_login %}
+                <tr class="border-b hover:bg-gray-100 transition-colors duration-200">
+                    <td class="py-2 px-4">{{ item.id_card }}</td>
+                    <td class="py-2 px-4">{{ item.first_name }}</td>
+                    <td class="py-2 px-4">{{ item.last_name }}</td>
+                    <td class="py-2 px-4">{{ item.login }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="py-4 px-5 text-center text-gray-500">No members found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
+
 
 {% endblock %}

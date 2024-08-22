@@ -100,9 +100,7 @@
                 <input class="input" type="text" name="id_card" id="id_card" value="{{ form.id_card.value|default_if_none:'' }}">
             </div>
 
-            {% if form.id_card.errors%}
-            <p> {{ form.id_card.errors}}</p>
-            {% endif %}
+
             
             <div class="form-group">
                 <label for="{{ form.expiry.id_for_label }}">Expiry Date:</label>
