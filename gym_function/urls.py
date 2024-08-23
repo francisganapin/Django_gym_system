@@ -15,7 +15,8 @@ from .views import (
     showClass_views,
     inputInventory_views,
     loginMember_views,
-
+    registerClases_views,
+    deleteClasses_views
 )
 from django.conf.urls.static import static
 from django.conf import settings
@@ -43,6 +44,8 @@ urlpatterns = [
 
 
     path('classes',showClass_views,name='showClass_views'),
+    path('classes/register',registerClases_views,name='registerClases_views'),
+    path('classes/delete',deleteClasses_views,name='deleteClasses_views'),
 
     
 

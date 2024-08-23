@@ -1,5 +1,5 @@
 from django import forms
-from .models import gym_members,gym_item,gym_trainor
+from .models import gym_members,gym_item,gym_trainor,gym_classes
 from django.core.exceptions import ValidationError
 
 class RegisterFormMember(forms.ModelForm):
@@ -71,4 +71,7 @@ class UpdateFormInvetory(forms.ModelForm):
 
 
 
-    
+class RegisterFormClases(forms.ModelForm):
+      class Meta:
+            model = gym_classes
+            fields = ['class_name','class_type','class_day','class_hour','trainor_name']

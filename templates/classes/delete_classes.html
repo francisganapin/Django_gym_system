@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Classes{% endblock %}
+
+{% block content %}
+<style> 
+
+.body_color{
+    background-color: aquamarine;
+}
+
+</style>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+<body class="body_color">
+    <div class="max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+        <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Delete Class</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="class_name" class="block mb-2 text-sm font-medium text-gray-700">Delete Class Name</label>
+                <input type="text" name="class_name" id="class_name" class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Class Name" required>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="w-full px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Delete Class </button>
+            </div>
+        </form>
+    </div>
+</body>
+
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from gym_function.models import gym_members,gym_item,gym_trainor,gym_classes,member_login
-from .forms import InputFormInventory,RegisterFormMember,RegisterFormTrainor
+from .forms import InputFormInventory,RegisterFormMember,RegisterFormTrainor,RegisterFormClases
 import mysql.connector
 import datetime
 from django.shortcuts import render, redirect
@@ -204,7 +204,7 @@ def showMembershipMember_views(request):
             membership_data = [{'membership': row[0], 'count': row[1]} for row in rows]
             cursor.close()
 
-        gym_login = member_login.objects.all()
+        gym_login = member_login.objects.all()  
     return render(request, 'stats/stats_number.html', {'membership_data': membership_data,'number_members':number_members,'gym_login':gym_login})
 
 
@@ -214,3 +214,35 @@ def showClass_views(request):
     gym_class = gym_classes.objects.all()
     return render(request,'classes/show_class.html',{'gym_class':gym_class})
 
+def registerClases_views(request):
+
+    if request.method == 'POST':
+        form = RegisterFormClases(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/classes')
+    else:
+       form = RegisterFormClases()
+    
+
+    if request.method == 'GET':
+        with connection.cursor() as cursor:
+            cursor.execute('SELECT first_name, last_name  FROM gym_trainor GROUP BY first_name, last_name')
+            rows = cursor.fetchall()
+            trainor_data = [{'first_name':row[0],'last_name':row[1]} for row in rows]
+            cursor.close()
+            
+    return render(request, 'classes/register_classes.html', {'trainor_data': trainor_data, 'form': form})
+
+
+
+
+def deleteClasses_views(request):
+    '''this will delete classes by name be '''
+    if request.method =='POST':
+        class_name =request.POST.get('class_name')
+
+        with connection.cursor() as cursor:
+            cursor.execute("DELETE FROM gym_classes WHERE class_name =%s",(class_name,))
+        return redirect('showClass_views')
+    return render(request,'classes/delete_classes.html')

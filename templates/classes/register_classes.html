@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block title %}Classes{% endblock %}
+
+{% block content %}
+<style>
+    .body_div {
+        font-family: "SF Pro", sans-serif;
+        background-color: aquamarine;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .input {
+        font-family: inherit;
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border: 1.5px solid #ccc;
+        border-radius: 0.5rem;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: border-color 0.25s ease;
+        box-sizing: border-box;
+    }
+
+    .input:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
+    .icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+        color: #007bff;
+    }
+
+    button[type="submit"] {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        background-color: #007bff;
+        color: #fff;
+        font-size: 1rem;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.25s ease;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+</style>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<body>
+<div class="body_div">
+    <div class="container">
+        <h1>Registration Form for Class</h1>
+        <form id="input-form-class" method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="class_name">Class Name</label>
+                <input class="input" type="text" name="class_name" id="class_name" value="{{ form.class_name.value|default_if_none:'' }}" placeholder="Class Name">
+            </div>
+
+            <div class="form-group">
+                <label for="class_type">Class Type</label>
+                <select class="input" name="class_type" id="class_type">
+                    <option value="" disabled selected>Choose Class Type</option>
+                    <option value="Cardio">Cardio</option>
+                    <option value="Strength Training">Strength Training</option>
+                    <option value="Yoga">Yoga</option>
+                    <!-- other options -->
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="class_day">Class Day</label>
+                <select class="input" name="class_day" id="class_day">
+                    <option value="" disabled selected>Choose Class Day</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <!-- other options -->
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="class_hour">Class Hour</label>
+                <select class="input" name="class_hour" id="class_hour">
+                    <option value="" disabled selected>Choose Class Hour</option>
+                    <option value="7:00-8:30am">7:00-8:30 AM</option>
+                    <option value="8:30-10:00am">8:30-10:00 AM</option>
+                    <!-- other options -->
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="trainor_name">Trainer Name</label>
+                <select class="input" name="trainor_name" id="trainor_name">
+                    <option value="" disabled selected>Choose Trainer</option>
+                    {% for item in trainor_data %}
+                        <option value="{{ item.first_name }} {{ item.last_name }}">{{ item.first_name }} {{ item.last_name }}</option>
+                    {% empty %}
+                        <option value="">No Trainer Available</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
