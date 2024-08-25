@@ -54,7 +54,7 @@ from django.shortcuts import render
 
 def loginMember_views(request):
     expiry_date = None  # Initialize expiry_date at the beginning
-
+    result = None
     if request.method == 'POST':
         id_card = request.POST.get('id_card')  # Get the id_card from POST data
         if id_card:
@@ -78,15 +78,16 @@ def loginMember_views(request):
                         )
                         # Commit the transaction
                         connection.commit()
+                        result = [member_data]
 
             except Exception as e:
                 print("An error occurred:", e)  # Print the exception to understand what's going wrong
 
         # Render the template with the fetched expiry_date
-        return render(request, 'member/login_member.html', {'expiry_date': expiry_date})
+        return render(request, 'member/login_member.html', {'expiry_date': expiry_date,'result': result})
     
     # Render the template if the request is GET or id_card is not provided
-    return render(request, 'member/login_member.html', {'expiry_date': expiry_date})
+    return render(request, 'member/login_member.html', {'expiry_date': expiry_date,'result': result})
 
 
 
