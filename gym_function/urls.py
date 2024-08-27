@@ -36,6 +36,7 @@ urlpatterns = [
     path('inventory/update',updateInventory_views,name='updateInventory_views'),
     path('inventory/delete',deleteInventory_views,name='deleteInventory_views'),
     path('inventory/input',inputInventory_views,name='inputInventory_views'),
+    
         # for trainor 
     path('trainor',showTrainor_views,name='showTrainor_views'),
     path('trainor/register',addTrainor_views,name='addTrainor_views'),

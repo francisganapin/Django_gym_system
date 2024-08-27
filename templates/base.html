@@ -82,14 +82,14 @@
 <body>
 
     <div class="navbar">
-        <a href="#home">Home</a>
+        <a href="{% url 'showHomepage_views' %}">Home</a>
 
         <div class="dropdown">
-          <button class="dropbtn">Item Inventory
+          <button class="dropbtn">Item Navigation
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a href="{% url 'showInventory_views' %}">inventory list</a>
+            <a href="{% url 'showInventory_views' %}">Inventory list</a>
             <a href="{% url 'updateInventory_views' %}">Update</a>
             <a href="{% url 'deleteInventory_views' %}">Delete</a>
             <a href="{% url 'inputInventory_views' %}">Input</a>
@@ -137,7 +137,7 @@
         
      
         <div class="dropdown">
-          <button class="dropbtn">Classes
+          <button class="dropbtn">Classes Navigation
             <i class="fa fa-caret-down"></i>
           </button>
 

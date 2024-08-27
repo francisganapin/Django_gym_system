@@ -4,85 +4,105 @@
 
 {% block content %}
 
+<style>
+    .body_div {
 
-    <style>
-        
-        .body_div {
-            font-family: "SF Pro", sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+        background-color: aquamarine;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
 
-        .container {
-            background-color: #fff;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-        }
+        background-color: aquamarine;
+        font-family: Arial, sans-serif;
+      
+    }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-            color: #333;
-        }
-
-        .form-group {
-            margin-bottom: 1.25rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .input {
-            font-family: inherit;
-            width: 100%;
-            padding: 0.75rem;
-            font-size: 1rem;
-            border: 1.5px solid #ccc;
-            border-radius: 0.5rem;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-            transition: border-color 0.25s ease;
-            box-sizing: border-box;
-        }
-
-        .input:focus {
-            border-color: #007bff;
-            outline: none;
-        }
-
-        button[type="submit"] {
-            display: block;
-            width: 100%;
-            padding: 0.75rem;
-            background-color: #007bff;
-            color: #fff;
-            font-size: 1rem;
-            border: none;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: background-color 0.25s ease;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-
-    </style>
+    
 
 
-<h1> Hello </h1>
+    h1 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .input {
+        font-family: inherit;
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border: 1.5px solid #ccc;
+        border-radius: 0.5rem;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: border-color 0.25s ease;
+        box-sizing: border-box;
+    }
+
+    .input:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
+    button[type="submit"] {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        background-color: #007bff;
+        color: #fff;
+        font-size: 1rem;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.25s ease;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    .container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: x-large;
+}
+</style>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+
+<div class="body_div">
+
+<div class="container">
+
+    <p>👋 Welcome! We already have some functions here:</p>
+
+        <ul>
+            <li>📦 <strong>Item Inventory</strong> - Inventory list, Update, Delete, Input</li>
+            <li>🏋️‍♂️ <strong>Trainer Navigation</strong> - Register, Delete</li>
+            <li>🧑‍🤝‍🧑 <strong>Member Navigation</strong> - Login, Delete, Add, Update, List</li>
+            <li>📊 <strong>Stats</strong> Membership Total, Login Member</li>
+            <li>📚 <strong>Class Navigation</strong> - List, Registration, Update</li>
+        </ul>
+
+
+    </div>
+
+</div>
 
 
 {% endblock %}

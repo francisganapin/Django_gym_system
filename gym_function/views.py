@@ -13,6 +13,7 @@ def showHomepage_views(request):
 
 
 def showMember_views(request):
+    '''show member'''
     members = gym_members.objects.all()  # Fetch all members
     return render(request, 'member/show_member.html', {"members": members})
 
