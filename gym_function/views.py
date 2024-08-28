@@ -20,33 +20,55 @@ def showMember_views(request):
 
 def updateMember_views(request):
     '''This will update our member'''
+
+    message ='' # initialiaze string as message 
     if request.method == 'POST':
         id_card = request.POST.get('id_card')
         expiry = request.POST.get('expiry')
 
         with connection.cursor() as cursor:
-            cursor.execute(
-                "UPDATE gym_members SET expiry=%s WHERE id_card=%s",
-                [expiry, id_card]
-            )
-        return redirect('showMember_views')
 
-    return render(request, 'member/update_member.html')
+            cursor.execute('SELECT * FROM gym_members where id_card =%s',(id_card,))
+            result = cursor.fetchone()
+
+            if not result:
+                message = f'{id_card} does not exist'
+                return render(request, 'member/update_member.html', {'message': message})
+
+            else:
+                cursor.execute(
+                    "UPDATE gym_members SET expiry=%s WHERE id_card=%s",
+                    [expiry, id_card]
+                )
+
+            return redirect('showMember_views')
+
+    return render(request, 'member/update_member.html',{'message':message})
 
 
 def deleteMember_views(request):
-    '''this will delete member'''
- 
+    '''this will delete member it has ability to show if member does not exist'''
+    
+    message = ''
+
     if request.method =='POST':
         id_card = request.POST.get('id_card')
             
         with connection.cursor() as cursor:
-            cursor.execute("DELETE FROM gym_members WHERE id_card = %s",[id_card] )
-            connection.commit()
+
+            cursor.execute('SELECT * FROM gym_members where id_card =%s',(id_card,))
+            result = cursor.fetchone()
+
+            if not result:
+                message =f'{id_card} does not exist'
+                return render(request,'member/delete_member.html',{'message':message})
+            else:
+                cursor.execute("DELETE FROM gym_members WHERE id_card = %s",[id_card] )
+                connection.commit()
+                return redirect(showMember_views)
    
         
-        return redirect(showMember_views)
-    return render(request,'member/delete_member.html')
+    return render(request,'member/delete_member.html',{'message':message})
 
 
 from datetime import datetime

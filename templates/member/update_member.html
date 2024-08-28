@@ -12,11 +12,13 @@
 </style>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
+
 <body class="body_color">
     <div class="max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
         <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Update Member</h2>
         <form method="POST">
             {% csrf_token %}
+            <p>{{message}}</p> <!--- this will post if there was error message we have-->
             <div class="mb-4">
                 <label for="id_card" class="block mb-2 text-sm font-medium text-gray-700">ID Card</label>
                 <input type="text" name="id_card" id="id_card" class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="ID Card" required>

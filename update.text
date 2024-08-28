@@ -1,3 +1,8 @@
+update 8/29/2024
+	-ability to check if item exist on update membership
+	-ability to check if member exist on delete member
+	-show error if id_card is already exist it 
+
 update 8/25/2024
 	update login clear the details after 5 seconds or more
 
