@@ -135,29 +135,51 @@ def showInventory_views(request):
 
 
 def updateInventory_views(request):
+    message = ''
     if request.method == 'POST':
         id  = request.POST.get('id')
         stock = request.POST.get('stock')
-
         with connection.cursor() as cursor:
-            cursor.execute(
-                "UPDATE gym_item SET stock=%s WHERE id=%s",
-                (stock, id)  # Use a tuple here
-            )
-        return redirect('showInventory_views')
-    return render(request,'inventory/update_inventory.html')
+
+
+            cursor.execute('SELECT * FROM gym_item WHERE id=%s',(id,))
+            result = cursor.fetchone()
+            
+            if not result:
+                message =f'{id} does not exist'
+                return render(request,'inventory/update_inventory.html',{'message':message})
+
+            else:
+
+                # Use a tuple here # add this , <- i dunno whty it works 
+                cursor.execute(
+                "UPDATE gym_item SET stock=%s WHERE id=%s",(stock,id,))
+                connection.commit()
+                return redirect('showInventory_views')
+            
+    return render(request,'inventory/update_inventory.html',{'message':message})
 
 def deleteInventory_views(request):
+    message = ''
     if request.method == 'POST':
         id  = request.POST.get('id')
 
         with connection.cursor() as cursor:
-            cursor.execute(
-                "DELETE FROM gym_item WHERE id=%s",
-                (id,)  # Use a tuple here # add this , <- i dunno whty it works 
-            )
-        return redirect('showInventory_views')
-    return render(request,'inventory/delete_inventory.html')
+
+            cursor.execute('SELECT * FROM gym_item WHERE id=%s',(id,))
+            result = cursor.fetchone()
+            
+            if not result:
+                message =f'{id} does not exist'
+                return render(request,'inventory/delete_inventory.html',{'message':message})
+            else:
+
+                # Use a tuple here # add this , <- i dunno whty it works 
+                cursor.execute("DELETE FROM gym_item WHERE id=%s",(id,))
+                connection.commit()
+                return redirect('showInventory_views')
+            
+    return render(request,'inventory/delete_inventory.html',{'message':message})
 
 def inputInventory_views(request):
     if request.method == 'POST':

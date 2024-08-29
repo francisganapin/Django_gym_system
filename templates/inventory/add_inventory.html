@@ -12,11 +12,23 @@
 </style>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
+
+
 <body class="body_color">
     <div class="max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
         <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Input Inventory</h2>
         <form method="POST">
             {% csrf_token %}
+            
+
+{% if form.item_name.errors %}
+    <div class="flash-message">
+        <p>{{ form.item_name.errors }}</p>
+    </div>
+{% endif %}
+
+
+
             <div class="mb-4">
                 <label for="id" class="block mb-2 text-sm font-medium text-gray-700">Item Name</label>
                 <input type="text" name="item_name" id="item_name" class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Item Name" required>
@@ -43,6 +55,19 @@
         </form>
     </div>
 </body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            var flashMessages = document.querySelectorAll('.flash-message');
+            flashMessages.forEach(function(flashMessage) {
+                flashMessage.style.display = 'none';
+            });
+        }, 5000); // Hide after 5 seconds
+    });
+</script>
+
+
 
 
 {% endblock %}

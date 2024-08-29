@@ -59,9 +59,16 @@ class DeleteFormMember(forms.ModelForm):
             fields = ['id_card']
             
 class InputFormInventory(forms.ModelForm):
-        class Meta:
-              model = gym_item
-              fields = ['item_name','stock','description','supplier','phone_number']
+    class Meta:
+            model = gym_item
+            fields = ['item_name','stock','description','supplier','phone_number']
+
+    def clean_item_name(self):
+        item_name = self.cleaned_data.get('item_name')
+        if gym_item.objects.filter(item_name=item_name).exists():
+            raise ValidationError(f'This item name "{item_name}" already exists.')
+        return item_name
+
 
 
 class UpdateFormInvetory(forms.ModelForm):
