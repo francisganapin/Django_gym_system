@@ -1,16 +1,30 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from gym_function.models import gym_members,gym_item,gym_trainor,gym_classes,member_login
 from .forms import InputFormInventory,RegisterFormMember,RegisterFormTrainor,RegisterFormClases
-import mysql.connector
+
 import datetime
 from django.shortcuts import render, redirect
 from django.db import connection
 
+from datetime import datetime
+from django.db import connection
+from django.shortcuts import render
+
+
+from django.utils import timezone  # To get the current date
+
 # Create your views here.
+
+
 
 def showHomepage_views(request):
     return render(request,'homepage.html')
 
+
+def showExpired_views(request):
+    current_date = timezone.now().date()
+    expired_members = gym_members.objects.filter(expiry__lt=current_date)
+    return render(request,'stats/show_expired.html',{'members':expired_members})
 
 def showMember_views(request):
     '''show member'''
@@ -70,10 +84,6 @@ def deleteMember_views(request):
         
     return render(request,'member/delete_member.html',{'message':message})
 
-
-from datetime import datetime
-from django.db import connection
-from django.shortcuts import render
 
 def loginMember_views(request):
     expiry_date = None  # Initialize expiry_date at the beginning

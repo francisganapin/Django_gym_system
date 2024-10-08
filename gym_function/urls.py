@@ -16,7 +16,8 @@ from .views import (
     inputInventory_views,
     loginMember_views,
     registerClases_views,
-    deleteClasses_views
+    deleteClasses_views,
+    showExpired_views
 )
 from django.conf.urls.static import static
 from django.conf import settings
@@ -51,8 +52,8 @@ urlpatterns = [
     
 
         # stats
-    path('show/membership/',showMembershipMember_views,name='showMembershipMember_views')
-
+    path('show/membership/',showMembershipMember_views,name='showMembershipMember_views'),
+    path('show/expiry/',showExpired_views,name='showExpired_views')
 ]
 
 if settings.DEBUG:
