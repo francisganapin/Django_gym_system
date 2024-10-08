@@ -4,7 +4,7 @@
 
 # 📋 Project Requirements
 
-**🔄 Last Updated:** 04/23/2024
+**🔄 Last Updated:** 04/29/2024
 
 ## ⚙️ Environment Setup
 
